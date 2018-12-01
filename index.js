@@ -1016,3 +1016,9 @@ let data = `-8
 	.split('\n')
 	.map(row => row.split(' '));
 
+let sum = 0;
+for (x of data) {
+	sum += parseInt(x);
+}
+
+console.log(sum);
