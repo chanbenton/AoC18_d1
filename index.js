@@ -1013,12 +1013,38 @@ let data = `-8
 -2
 -16
 -140560`
-	.split('\n')
-	.map(row => row.split(' '));
+	.split('\n');
 
-let sum = 0;
-for (x of data) {
-	sum += parseInt(x);
+/*
+ * Find the sum of all numbers from the input above
+ */
+const firstPuzzle = (data) => {
+	let sum = 0;
+
+	for (i of data) {
+		sum += parseInt(i);
+	} 
+
+	return sum;
 }
 
-console.log(sum);
+/*
+ * Based on the above function, find the first sum duplicated while adding each element.
+ * Looks up the sum in 'seen', and either return a match or adds the sum to the lookup table
+ * If no matches are made by the end of input, loop back to the first input.
+ */
+const secondPuzzle = (data) => {
+	let sum = 0;
+	const seen = {};
+	while (true) {
+		for (i of data) {
+			sum += Number(i);
+			
+			if (seen[sum]) return sum;
+			seen[sum] = true; 
+		}
+	}
+};
+
+console.log(firstPuzzle(data)); // => 490 
+console.log(secondPuzzle(data)); // => 70357
